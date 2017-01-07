@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>Claim a Request</title>
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="../Dashboard/css/main.css">
@@ -19,11 +19,11 @@
   
   <div class="row">
     <form class="col s12" method="get" action="send_quotation.php">
-      <input name="request_id" hidden="true"
+      <input name="request_id" type="hidden"
       <?php
         echo "value={$_REQUEST['request_id']}"
       ?>>
-      <input name="student_id" hidden="true"
+      <input name="student_id" type="hidden"
       <?php
         echo "value={$_REQUEST['student_id']}"
       ?>>

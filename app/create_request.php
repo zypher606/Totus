@@ -19,7 +19,7 @@ $values = implode(",", $values);
 $sql = "INSERT INTO requests (poster_id,type,lat,lng,time,skills,active,description) VALUES ($values)";
 */
 $_REQUEST['student_id'] = $_SESSION['user_id'];
-$sql = insert_input('requests', 'student_id,lat,lng,time,skills,description');
+$sql = insert_input('requests', 'student_id,title,lat,lng,time,skills,description');
 echo $sql;
 if ($mysqli->query($sql)) {
   echo json_encode(['status'=>'success']);

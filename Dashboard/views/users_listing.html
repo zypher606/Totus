@@ -33,19 +33,12 @@
 		   					<div class="chip">Electrical</div>
 		   					<div class="chip">Programming</div>
 		   					<div class="chip">Arduino</div>
-
 		   				</div>
-		   				
-
 					    <!-- <p>{{listing.description}}</p> -->
-					    
 		   			</div>
-
 		   			<div class="col s3 card-list-btns">
 
-		   				
-
-		   				<a class="waves-effect waves-dark btn"><i class="material-icons right">label_outline</i>Claim</a>
+		   				<a class="waves-effect waves-dark btn" ng-href="../app/claim_landing.php?request_id={{listing.id}}&student_id={{listing.student_id}}"><i class="material-icons right">label_outline</i>Claim</a>
 		   			</div>
 		   		</div>
 			        
@@ -155,7 +148,7 @@
 
 
             var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
-				              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
+				              '<a href="../app/claim_landing.php?request_id='+loc.id+'&student_id='+loc.student_id+'" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
 				              '<div class="row">'+
 				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">'+ loc.title + '</h3>'+
 				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</p>'+
@@ -173,10 +166,14 @@
             var infowindow = new google.maps.InfoWindow();
             google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
                 return function () {
+                    $('.locationTooltip').parents('.gm-style-iw').parent().hide();
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
                 };
             })(marker, content, infowindow));
+            google.maps.event.addListener(map, "click", function(event) {
+                infowindow.close();
+            });
         }
     }
 

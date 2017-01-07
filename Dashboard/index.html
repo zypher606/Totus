@@ -16,8 +16,44 @@
 <body ng-app="myApp" ng-controller="dashboardController">
 
 	<div class='header center-align'>
-		<div class="title">TOTUS</div>
+		<div class="title">TOTUS
+
+            <a class="right notification-btn" href="#modal1" data-beloworigin="true"><i class="mdi-navigation-arrow-drop-down right material-icons">add_alert</i></a>
+
+
+        </div>
+
 	</div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+          <ul class="collection notification-dropdown">
+                <li class="collection-item avatar">
+                        <img src="http://materializecss.com/images/yuna.jpg" alt="" class="circle">
+                        <span class="title">Name</span>
+                        <p>First Line</p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                </li>
+                <li class="collection-item avatar">
+                        <img src="http://materializecss.com/images/yuna.jpg" alt="" class="circle">
+                        <span class="title">Name</span>
+                        <p>First Line</p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                </li>
+                <li class="collection-item avatar">
+                        <img src="http://materializecss.com/images/yuna.jpg" alt="" class="circle">
+                        <span class="title">Name</span>
+                        <p>First Line</p>
+                        <a href="#!" class="secondary-content"><i class="material-icons">contact_mail</i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+                
 	<div class="mytoolbar fixed-action-btn toolbar">
 	    <a class="btn-floating btn-large red">
 	      <i class="large material-icons">menu</i>
@@ -97,7 +133,14 @@
 
 
 
-
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+          });
+               
+    </script>
 
 
 	

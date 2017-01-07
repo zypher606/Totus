@@ -129,3 +129,37 @@ body {
 .claim-section button{
 	margin-left: 16px;
 }
+
+.notification-btn{
+	margin-right: 50px;
+    height: 30px;
+    background: #3dc743;
+    width: 30px;
+    border-radius: 50%;
+    margin-top: 4px;
+    text-align: center;
+    box-shadow: #949494 0px 1px 2px;
+}
+.notification-btn>i{
+	margin: 0px;
+    font-size: 19px;
+    line-height: 27px;
+    text-align: center;
+    padding-right: 6px;
+    color: #fff;
+}
+
+.notification-dropdown{
+	width: 100%;
+}
+
+
+
+#main-content {
+width: 920px;
+margin: -4px auto 0 auto;
+padding: 28px 0 32px;
+overflow: hidden;
+position:relative;
+z-index: -1;
+    }

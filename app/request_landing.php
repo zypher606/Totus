@@ -3,7 +3,7 @@
   include_once('db_connect.php');
 
 /* requires lat,lng,time,skills,description */
-  //$_SESSION['redirect'] = "claim_landing.php?request_id={$_REQUEST['request_id']}&student_id={$_REQUEST['student_id']}";
+  $_SESSION['redirect'] = "request_landing.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,7 @@
       $('input[name=lat]').val('23.1964262');
       $('input[name=lng]').val('23.1964262');
       var d = new Date($('#date').val() + ' ' + $('#time').val());
-      $('input[name=time]').val(d.getTime());
+      $('input[name=time]').val(d.getTime()/1000);
       if ($('.chips').material_chip('data').length) {
         $('input[name=skills]').val($('.chips').material_chip('data').map(function(a){return a.tag;}).join(","));
       } else {

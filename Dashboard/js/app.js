@@ -14,28 +14,52 @@ var app1 = app.filter('trusted', ['$sce', function($sce) {
 app1.controller('dashboardController', function($scope, $http, $sce, $timeout, toaster ){
 
 
+    $scope.focusMap = function(n) {
+        
+    	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
 
+    	zoomFluid = map.getZoom();
+        var marker = locations[n];
+        console.log('moving to', marker.lat, marker.lng);
+    	map.panTo({lat: 0.1+parseFloat(marker.lat), lng: -0.1+parseFloat(marker.lng)});
+    	// map.setZoom(12);
+    	zoomTo(); 
 
-
-
+    }
 	//EVENTS STARTS FROM HERE
 	/************************************************************************/
 	/*      Jobsearch page call                                             */
 	/************************************************************************/
 	$scope.listUser = function() 
-	{
-		$scope.tabShowfx = false;
-		$scope.getTab = function () {
-			return './views/users_listing.html';
-		}//Loading the respective page
+    {
+       $scope.tabShowfx = false;
 		
-		
-		$scope.loading = true;  //Loading gif
+      $scope.getTab = function () {
+          return './views/users_listing.html';
+      }//Loading the respective page
+      $scope.loading = true;  //Loading gif
+      
+      $http.get("../app/fetch_listings.php").success(function(response){
+          $scope.listings = response;
+          console.log("loaded data");
+          console.log($scope.listings);
+          app.listings = response;
+          console.log('hello');
+      })
+          .catch(function (err) {
+              $scope.loading = false;
+              $scope.conn_error=true;
+              console.log('error');
+          })
 
-
-		$scope.loading = false;
-		$scope.tabShowfx = true;
-		
+          .finally(function () {
+              // Hide loading spinner whether our call
+              $timeout(function(){
+                  $scope.loading = false;
+                  $scope.tabShowfx = true;
+              }, 300);
+              console.log('finally');
+          });
 			
 	};//Job search tab click fxn end
 

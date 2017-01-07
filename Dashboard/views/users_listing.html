@@ -1,7 +1,15 @@
 <h4 class="center-align tab-header">USER LOCATE</h4>
 <div class="listing-frame row">
 	<div class="users-list col m4 l4">
-	 <a href="#" onclick="focusMap()">Click here</a>
+	 <!--<a href="#" ng-click="focusMap()">Click here</a>-->
+	 <ul>
+	   <li ng-repeat="listing in listings">
+         <h4>{{listing.title}}</h4>
+	     <p>{{listing.description}}</p>
+	     <a href="#" ng-click="focusMap($index);">Show on map</a> 
+	     <!--onclick="focusMap($index)" -->
+	   </li>
+	 </ul>
 	</div>
 
 	<div class="users-map col m8 l8">
@@ -15,14 +23,16 @@
 
 
 <script type="text/javascript">
-    var locations = [
+    /*var locations = [
 		  ['loan 1', 22.2587, 71.1924, 'address 1']
 		  , ['loan 2', 23.923036, 71.259052, 'address 2']
 		  , ['loan 3', 24.028249, 71.157507, 'address 3']
 		  , ['loan 4', 23.80010128657071, 71.28747820854187, 'address 4']
 		  , ['loan 5', 23.950198, 71.259302, 'address 5']
-		  ];
-
+		  ];*/
+    console.log('hello again');
+    var locations = app.listings;
+    console.log('real',locations);
     var myOptions;
     function initialize() {
         myOptions = {
@@ -31,17 +41,18 @@
             , mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map-inject"), myOptions);
+        app.gmap = map;
         setMarkers(map, locations);
 
     }
 
-    function setMarkers(map, locations) {
-        var marker, i
+    function setMarkers_(map, locations) {
+        var marker, i;
         for (i = 0; i < locations.length; i++) {
-            var loan = locations[i][0]
-            var lat = locations[i][1]
-            var long = locations[i][2]
-            var add = locations[i][3]
+            var loan = locations[i][0];
+            var lat = locations[i][1];
+            var long = locations[i][2];
+            var add = locations[i][3];
             latlngset = new google.maps.LatLng(lat, long);
             var icon = {
                 path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0"
@@ -61,14 +72,52 @@
             map.setCenter(marker.getPosition());
 
 
-            // var content = "Loan Number: " + loan + '</h3>' + "Address: " + add
+
+            var content = "Loan Number: " + loan + '</h3>' + "Address: " + add;
+            var infowindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+                return function () {
+                    infowindow.setContent(content);
+                    infowindow.open(map, marker);
+                };
+            })(marker, content, infowindow));
+        }
+    }
+  
+    function setMarkers(map, locations) {
+        console.log("setting");
+        var marker, i;
+        for (i = 0; i < locations.length; i++) {
+            var loc = locations[i];
+            latlngset = new google.maps.LatLng(parseFloat(loc.lat), parseFloat(loc.lng));
+            var icon = {
+                path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0"
+                , text: 'xx'
+                , fillColor: '#11a339'
+                , fillOpacity: 1
+                , anchor: new google.maps.Point(0, 0)
+                , strokeWeight: 0
+                , scale: .7
+            };
+            var marker = new google.maps.Marker({
+                map: map
+                , title: loc.title
+                , position: latlngset
+                , icon: icon
+            });
+            map.setCenter(marker.getPosition());
+            // var content = '<h3>'+loc.title+'</h3>'+'<p>'+loc.description+'</p>';
+
+
+
+
 
             var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
-				              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;top: 0;z-index: 100000;height: 46px;line-height: 46px;font-size: 16px;">claim</a>'+
+				              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
 				              '<div class="row">'+
-				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">Basic Electronics</h3>'+
+				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">'+ loc.title + '</h3>'+
 				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</p>'+
-				                  '<p class="truncate">Lorem hanges the center of the map to the given LatLng. If the change is less than both the width and height of the map, the transition will be smoothly animated.</p>' +
+				                  '<p class="truncate">'+ loc.description +'</p>' +
 				              '</div>'+
 
 				               '<div class="row">'+
@@ -76,6 +125,7 @@
 				                   '<div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>'+
 				              '</div>'+   
 				         '</div>';
+
 
 
             var infowindow = new google.maps.InfoWindow();
@@ -92,16 +142,28 @@
 
 
     var zoomFluid ;
-    function focusMap() {
+    // function focusMap_() {
 
-    	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
+    // 	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
 
-    	zoomFluid = map.getZoom();
-    	map.panTo({lat: 23.923036, lng: 71.259052});
-    	// map.setZoom(12);
-    	zoomTo(); 
+    // 	zoomFluid = map.getZoom();
+    // 	map.panTo({lat: 23.923036, lng: 71.259052});
+    // 	// map.setZoom(12);
+    // 	zoomTo(); 
 
-    }
+    // }
+  
+  // function focusMap(n) {
+  //   	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
+  //   	console.log("hello",n);
+  //   	zoomFluid = map.getZoom();
+  //       var marker = locations[n];
+  //       console.log('moaving to', marker.lat, marker.lng);
+  //   	map.panTo({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)});
+  //   	// map.setZoom(12);
+  //   	zoomTo(); 
+
+  //   }
 
     function zoomTo(){
 	    console.log(zoomFluid);

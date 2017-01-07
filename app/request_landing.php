@@ -16,8 +16,26 @@
 </head>
 
 <body>
-  
-  <div class="row">
+
+    <div class='header center-align'>
+        <div class="title">TOTUS</div>
+    </div>
+    <div class="mytoolbar fixed-action-btn toolbar">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+    <div class="gap40"></div>
+    <div class="gap40"></div>
+   
+  <div class="row claim-section">
     <form class="col s12" method="get" action="create_request.php">
       <div class="row">
         Map input

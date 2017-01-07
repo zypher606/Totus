@@ -97,4 +97,4 @@ Thumbs.db
 !.gitignore
 !.editorconfig
 
-app/db_connect.php
+/app/db_connect.php

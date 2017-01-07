@@ -34,16 +34,23 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
     {
        $scope.tabShowfx = false;
 		
-      $scope.getTab = function () {
-          return './views/users_listing.html';
-      }//Loading the respective page
+
+		$scope.getTab = function () {
+			          return './views/users_listing.html';
+			      }//Loading the respective page
+      
       $scope.loading = true;  //Loading gif
       
       $http.get("../app/fetch_listings.php").success(function(response){
-          $scope.listings = response;
-          console.log("loaded data");
-          console.log($scope.listings);
-          app.listings = response;
+
+      		app.listings = response;
+          	$scope.listings = response;
+
+          
+          
+
+          
+
           console.log('hello');
       })
           .catch(function (err) {
@@ -55,13 +62,17 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
           .finally(function () {
               // Hide loading spinner whether our call
               $timeout(function(){
+
+              	
                   $scope.loading = false;
                   $scope.tabShowfx = true;
-              }, 300);
+              }, 400);
               console.log('finally');
           });
 			
 	};//Job search tab click fxn end
+
+
 
 
 
@@ -76,6 +87,17 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
 
 
 
+
+	$scope.splitCommas = function(myArg){
+		return (myArg).split(',');
+	}
+
+	$scope.getDate = function(argTimestamp){
+		var date = new Date(argTimestamp);
+		var n = date.getHours();
+		var o = date.getMinutes();
+		return n + ':' + o + ' - ' + (n+1) + ':' + o;
+	}
 
 	/************************************************************************/
 	/*      Job details table call                                          */

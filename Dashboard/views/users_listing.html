@@ -25,14 +25,13 @@
 		   					</div>
 
 		   					<div class="col s6 no-left-padding card-time">
-		   						<i class="material-icons">schedule</i> 11:00 - 12:00
+		   						<i class="material-icons">schedule</i> {{getDate(listing.time)}}
 		   					</div>
 		   				</div>
 
 		   				<div class="row">
-		   					<div class="chip">Electrical</div>
-		   					<div class="chip">Programming</div>
-		   					<div class="chip">Arduino</div>
+		   					<div class="chip" ng-repeat="x in splitCommas(listing.skills)">{{x}}</div>
+		   
 
 		   				</div>
 		   				
@@ -152,13 +151,19 @@
 
 
 
+            function getDateJS(argTimestamp){
+				var date = new Date(argTimestamp);
+				var n = date.getHours();
+				var o = date.getMinutes();
+				return n + ':' + o + ' - ' + (n+1) + ':' + o;
+			}
 
 
             var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
 				              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
 				              '<div class="row">'+
 				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">'+ loc.title + '</h3>'+
-				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</p>'+
+				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> ' + getDateJS(loc.time) +'</p>'+
 				                  '<p class="truncate">'+ loc.description +'</p>' +
 				              '</div>'+
 

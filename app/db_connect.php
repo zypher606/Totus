@@ -7,7 +7,7 @@
 
   $db_host     = 'localhost';
   $db_user     = 'root';
-  $db_password = '';
+  $db_password = 'chroot';
   $db_name     = 'redef_hack';
 
   $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);

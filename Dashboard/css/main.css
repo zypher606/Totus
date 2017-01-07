@@ -111,3 +111,21 @@ body {
 .card-list-btns>a:hover{
 	background: #fff;
 }
+
+
+
+
+
+/****************************************************************/
+/*       CLAIMED PAGE STYLING                                   */
+/****************************************************************/
+.claim-section{
+	width: 60%;
+	margin-left: 20%;
+	background: #fff;
+	padding: 30px 15px;
+}
+
+.claim-section button{
+	margin-left: 16px;
+}

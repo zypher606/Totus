@@ -64,8 +64,50 @@ body {
 }
 .users-list{
 	border-right: solid 2px #7ede82;
+	padding-left: 0px !important;
 }
 
 #map-inject{
 	min-height: 565px !important;
+}
+
+.no-left-padding{
+	padding-left: 2px !important;
+}
+.card-location, .card-time{
+	font-size: 16px;
+}
+.card-location>i, .card-time>i{
+	font-size: 15px;
+}
+.no-bottom-margin{
+	margin-bottom: 2px !important;
+}
+.card-list-items{
+	padding-left: 10px;
+	cursor: pointer;
+	transition: ease-out 0.1s;
+	border-bottom: solid 1px #d2d2d2;
+}
+.card-list-items:hover{
+	border-left: solid 4px #7ede82;
+}
+
+.card-list-btns{
+	padding-top: 23px !important; 
+}
+
+.card-list-btns>a{
+    width: 106px;
+    padding: 0px 7px;
+    text-align: left;
+    width: 106px;
+    padding: 0px 7px;
+    text-align: left;
+    margin-left: -21px;
+    background: #e6e6e6;
+    color: #000;
+}
+.card-list-btns>a:hover{
+	background: #fff;
 }

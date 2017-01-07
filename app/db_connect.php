@@ -7,7 +7,7 @@
 
   $db_host     = 'localhost';
   $db_user     = 'root';
-  $db_password = 'chroot';
+  $db_password = '';
   $db_name     = 'redef_hack';
 
   $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
@@ -23,6 +23,13 @@
     }
     $values = implode("','", $values);
     return "INSERT INTO $table ($fields) VALUES ('$values');";
+  }
+
+  function redirect($url) {
+    ob_start();
+    header('Location: '.$url);
+    ob_end_flush();
+    die();
   }
 
 ?>

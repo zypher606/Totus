@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </head>
+  <body>
+
+  <div class="locationTooltip" style="width: 300px; height: 150px; border-radius: 5px;">
+      <div class="row">
+          <h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">Basic Electronics</h3>
+          <h6 style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</h6>
+          <p class="truncate">Lorem hanges the center of the map to the given LatLng. If the change is less than both the width and height of the map, the transition will be smoothly animated.</p>
+      </div>
+
+      <div class="row">
+         <div class="col s2" style="background: #26a69a; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>
+         <div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>
+      </div>
+
+
+
+
+     
+
+
+
+      
+  </div>
+
+
+
+
+
+
+    <div id="map"></div>
+    <script>
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+
+
+        var contentString = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
+              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;top: 0;z-index: 100000;height: 46px;line-height: 46px;font-size: 16px;">claim</a>'+
+              '<div class="row">'+
+                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">Basic Electronics</h3>'+
+                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</p>'+
+                  '<p class="truncate">Lorem hanges the center of the map to the given LatLng. If the change is less than both the width and height of the map, the transition will be smoothly animated.</p>' +
+              '</div>'+
+
+               '<div class="row">'+
+                   '<div class="col s2" style="background: #26a69a; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>'+
+                   '<div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>'+
+              '</div>'+
+                  
+             
+              
+         ' </div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1VkUDYOytbWF67w9U3yjny-8IOUVe7JA&callback=initMap">
+    </script>
+  </body>
+</html>

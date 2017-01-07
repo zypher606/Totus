@@ -58,9 +58,27 @@
                 , position: latlngset
                 , icon: icon
             });
-            map.setCenter(marker.getPosition())
-            var content = "Loan Number: " + loan + '</h3>' + "Address: " + add
-            var infowindow = new google.maps.InfoWindow()
+            map.setCenter(marker.getPosition());
+
+
+            // var content = "Loan Number: " + loan + '</h3>' + "Address: " + add
+
+            var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
+				              '<a href="#" class="waves-effect waves-light btn" style="position: absolute;right: 0;top: 0;z-index: 100000;height: 46px;line-height: 46px;font-size: 16px;">claim</a>'+
+				              '<div class="row">'+
+				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">Basic Electronics</h3>'+
+				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> 11:00 - 12:00</p>'+
+				                  '<p class="truncate">Lorem hanges the center of the map to the given LatLng. If the change is less than both the width and height of the map, the transition will be smoothly animated.</p>' +
+				              '</div>'+
+
+				               '<div class="row">'+
+				                   '<div class="col s2" style="background: #26a69a; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>'+
+				                   '<div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>'+
+				              '</div>'+   
+				         '</div>';
+
+
+            var infowindow = new google.maps.InfoWindow();
             google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
                 return function () {
                     infowindow.setContent(content);

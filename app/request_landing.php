@@ -101,7 +101,7 @@
         $('#chips-error').show();
         window.setTimeout(function() {$('#chips-error').fadeOut();  }, 2000);
       }
-      alert($('form').serialize());
+      //alert($('form').serialize());
     });
   });
   var myOptions;

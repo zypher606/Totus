@@ -38,9 +38,11 @@
   <div class="row claim-section">
     <form class="col s12" method="get" action="create_request.php">
       <div class="row">
-        Map input
-        <input type="hidden" name="lat">
-        <input name="lng" type="hidden">
+        <div class="users-map col s12">
+          <div id="map-inject" style="width:100%; height:100%; z-index: 0;"></div>
+        </div>
+        <input id="lat" name="lat" type="hidden" value="23.1904058">
+        <input id="lng" name="lng" type="hidden" value="72.6328568">
       </div>
       <div class="row">
         <div class="input-field col s6">
@@ -89,8 +91,6 @@
     $('.datepicker').pickadate({selectMonths: true, selectYears: false, selectTime: true});
     $('.chips').material_chip();
     $('form').submit(function(e) {
-      $('input[name=lat]').val('23.1964262');
-      $('input[name=lng]').val('23.1964262');
       var d = new Date($('#date').val() + ' ' + $('#time').val());
       $('input[name=time]').val(d.getTime()/1000);
       if ($('.chips').material_chip('data').length) {
@@ -104,6 +104,29 @@
       alert($('form').serialize());
     });
   });
+  var myOptions;
+  function initialize() {
+      myOptions = {
+          center: new google.maps.LatLng(23.1904058,72.6328568)
+          , zoom: 11
+          , mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById("map-inject"), myOptions);
+    // Place a draggable marker on the map
+var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(23.1904058,72.6328568),
+    map: map,
+    draggable:true,
+    title:"Choose location"
+});
+
+//get marker position and store in hidden input
+google.maps.event.addListener(marker, 'dragend', function (evt) {
+    $('#lat').val(evt.latLng.lat().toFixed(7));
+    $('#lng').val(evt.latLng.lng().toFixed(7));
+});
+  }
+  initialize();
   </script>   
 </body>
 </html>

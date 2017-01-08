@@ -65,6 +65,8 @@ body {
 .users-list{
 	border-right: solid 2px #7ede82;
 	padding-left: 0px !important;
+	overflow-y: scroll;
+    height: 565px;
 }
 
 #map-inject{

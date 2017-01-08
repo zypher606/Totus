@@ -15,13 +15,17 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
     $scope.focusMap = function(n) {
         
     	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
-    	console.log(n);
+    	
     	zoomFluid = map.getZoom();
         var marker = locations[n];
+        console.log(marker);
         console.log('moving to', marker.lat, marker.lng);
     	map.panTo({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)});
     	// map.setZoom(12);
     	zoomTo(); 
+
+    	google.maps.event.trigger(globalMarker[n], 'click');
+
 
     };
 
@@ -137,6 +141,47 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
 
 
 
+	// function toRadx = function() {
+	//     return this * Math.PI / 180;
+	// }
+	
+
+
+
+
+
+	// $scope.distanceMeasure = function(lat, lng) {
+
+	// 	var d;
+	// 	function showPosition(position){
+
+			
+
+	// 		var myLocation = (position.coords);
+       
+
+ //          	var lat1 = parseFloat(myLocation.latitude);
+	// 		var lon1 = parseFloat(myLocation.longitude)          	
+	
+
+	// 		var R = 6371e3; // metres
+	// 		var φ1 = lat1.toRadx();
+	// 		var φ2 = lat.toRadx();
+	// 		var Δφ = (lat-lat1).toRadx();
+	// 		var Δλ = (lng-lon1).toRadx();
+
+	// 		var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+	// 		        Math.cos(φ1) * Math.cos(φ2) *
+	// 		        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+	// 		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	// 		d = R * c;
+	// 	}
+
+	// 	navigator.geolocation.getCurrentPosition(showPosition);
+
+	// 	return d;
+
+	// }
 
 
 
@@ -201,13 +246,22 @@ function initialize(locationPara) {
     map = new google.maps.Map(document.getElementById("map-inject"), myOptions);
     app.gmap = map;
     console.log(locationPara);
+
+    var geoloccontrol = new klokantech.GeolocationControl(map, 11);
     setMarkers(map, locationPara);
 
 }
 
+var globalMarker = [];
 
 function setMarkers(map, locations) {
     console.log("setting");
+
+
+
+
+
+
     var marker, i;
     for (i = 0; i < locations.length; i++) {
         var loc = locations[i];
@@ -227,6 +281,9 @@ function setMarkers(map, locations) {
             , position: latlngset
             , icon: icon
         });
+
+        globalMarker.push(marker);
+
         map.setCenter(marker.getPosition());
         // var content = '<h3>'+loc.title+'</h3>'+'<p>'+loc.description+'</p>';
 
@@ -267,9 +324,18 @@ function setMarkers(map, locations) {
         google.maps.event.addListener(map, "click", function(event) {
             infowindow.close();
         });
+
+
     }
-}
+    google.maps.event.addListener(map, "click", function(event) {
+            $('.locationTooltip').parents('.gm-style-iw').parent().hide();
+        });
+
+
+
+
 
     
 
+}
 

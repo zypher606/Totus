@@ -40,7 +40,7 @@
 				            	<i class="large material-icons" style="font-size: 19px;">perm_identity</i>
 			            	</div>
 				                 
-			                 <div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>
+			                 <div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">{{listing.name}}</div>
 			            </div>
 					    <!-- <p>{{listing.description}}</p> -->
 		   			</div>
@@ -73,150 +73,10 @@
 		  , ['loan 4', 23.80010128657071, 71.28747820854187, 'address 4']
 		  , ['loan 5', 23.950198, 71.259302, 'address 5']
 		  ];*/
-    console.log('hello again');
-    var locations = app.listings;
-    console.log('real',locations);
-    var myOptions;
-    function initialize() {
-        myOptions = {
-            center: new google.maps.LatLng(33.890542, 151.274856)
-            , zoom: 11
-            , mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map-inject"), myOptions);
-        app.gmap = map;
-        setMarkers(map, locations);
-
-    }
-
-    function setMarkers_(map, locations) {
-        var marker, i;
-        for (i = 0; i < locations.length; i++) {
-            var loan = locations[i][0];
-            var lat = locations[i][1];
-            var long = locations[i][2];
-            var add = locations[i][3];
-            latlngset = new google.maps.LatLng(lat, long);
-            var icon = {
-                path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0"
-                , text: 'xx'
-                , fillColor: '#11a339'
-                , fillOpacity: 1
-                , anchor: new google.maps.Point(0, 0)
-                , strokeWeight: 0
-                , scale: .7
-            };
-            var marker = new google.maps.Marker({
-                map: map
-                , title: loan
-                , position: latlngset
-                , icon: icon
-            });
-            map.setCenter(marker.getPosition());
-
-
-
-            var content = "Loan Number: " + loan + '</h3>' + "Address: " + add;
-            var infowindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-                return function () {
-                    infowindow.setContent(content);
-                    infowindow.open(map, marker);
-                };
-            })(marker, content, infowindow));
-        }
-    }
-  
-    function setMarkers(map, locations) {
-        console.log("setting");
-        var marker, i;
-        for (i = 0; i < locations.length; i++) {
-            var loc = locations[i];
-            latlngset = new google.maps.LatLng(parseFloat(loc.lat), parseFloat(loc.lng));
-            var icon = {
-                path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0"
-                , text: 'xx'
-                , fillColor: '#11a339'
-                , fillOpacity: 1
-                , anchor: new google.maps.Point(0, 0)
-                , strokeWeight: 0
-                , scale: .7
-            };
-            var marker = new google.maps.Marker({
-                map: map
-                , title: loc.title
-                , position: latlngset
-                , icon: icon
-            });
-            map.setCenter(marker.getPosition());
-            // var content = '<h3>'+loc.title+'</h3>'+'<p>'+loc.description+'</p>';
-
-
-
-            function getDateJS(argTimestamp){
-				var date = new Date(argTimestamp);
-				var n = date.getHours();
-				var o = date.getMinutes();
-				return n + ':' + o + ' - ' + (n+1) + ':' + o;
-			}
-
-
-            var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
-				              '<a href="../app/claim_landing.php?request_id='+loc.id+'&student_id='+loc.student_id+'" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
-				              '<div class="row">'+
-				                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">'+ loc.title + '</h3>'+
-				                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> ' + getDateJS(loc.time) +'</p>'+
-				                  '<p class="truncate">'+ loc.description +'</p>' +
-				              '</div>'+
-
-				               '<div class="row">'+
-				                   '<div class="col s2" style="background: #26a69a; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>'+
-				                   '<div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">Ashim Raj</div>'+
-				              '</div>'+   
-				         '</div>';
-
-
-
-            var infowindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-                return function () {
-                    $('.locationTooltip').parents('.gm-style-iw').parent().hide();
-                    infowindow.setContent(content);
-                    infowindow.open(map, marker);
-                };
-            })(marker, content, infowindow));
-            google.maps.event.addListener(map, "click", function(event) {
-                infowindow.close();
-            });
-        }
-    }
-
-    initialize();
+    
 
 
     var zoomFluid ;
-    // function focusMap_() {
-
-    // 	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
-
-    // 	zoomFluid = map.getZoom();
-    // 	map.panTo({lat: 23.923036, lng: 71.259052});
-    // 	// map.setZoom(12);
-    // 	zoomTo(); 
-
-    // }
-  
-  // function focusMap(n) {
-  //   	// map.setCenter(new google.maps.LatLng(23.923036, 71.259052));
-  //   	console.log("hello",n);
-  //   	zoomFluid = map.getZoom();
-  //       var marker = locations[n];
-  //       console.log('moaving to', marker.lat, marker.lng);
-  //   	map.panTo({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)});
-  //   	// map.setZoom(12);
-  //   	zoomTo(); 
-
-  //   }
 
     function zoomTo(){
 	    console.log(zoomFluid);

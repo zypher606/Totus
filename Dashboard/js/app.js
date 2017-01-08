@@ -269,7 +269,7 @@ function setMarkers(map, locations) {
         var icon = {
             path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0"
             , text: 'xx'
-            , fillColor: '#11a339'
+            , fillColor: '#c32aff'
             , fillOpacity: 1
             , anchor: new google.maps.Point(0, 0)
             , strokeWeight: 0
@@ -298,7 +298,7 @@ function setMarkers(map, locations) {
 
 
         var content = '<div class="locationTooltip" style=" width: 300px; height: 190px;">'+
-			              '<a href="../app/claim_landing.php?request_id='+loc.id+'&student_id='+loc.student_id+'" class="waves-effect waves-light btn" style="position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">claim</a>'+
+			              '<a href="../app/claim_landing.php?request_id='+loc.id+'&student_id='+loc.student_id+'" class="waves-effect waves-light btn custom-btn" style="background: #c32aff; color: #fff; position: absolute;right: 0;bottom: 39px;z-index: 100000;font-size: 16px;">Claim</a>'+
 			              '<div class="row">'+
 			                  '<h5 style="font-weight: 400;margin-bottom: -7px;font-size: 20px;">'+ loc.title + '</h3>'+
 			                  '<p style="font-size: 14px; font-weight: 300;"><i class="material-icons" style="font-size: 11px;">schedule</i> ' + getDateJS(loc.time) +'</p>'+
@@ -306,7 +306,7 @@ function setMarkers(map, locations) {
 			              '</div>'+
 
 			               '<div class="row">'+
-			                   '<div class="col s2" style="background: #26a69a; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>'+
+			                   '<div class="col s2" style="background: #cccccc; height: 40px; width: 40px; border-radius: 50%; line-height: 46px; color: #fff;"><i class="large material-icons" style="font-size: 19px;">perm_identity</i></div>'+
 			                   '<div class="col s6" style="height: 46px; line-height: 41px;font-size: 19px;font-weight: 500;">' + loc.name + '</div>'+
 			              '</div>'+   
 			         '</div>';

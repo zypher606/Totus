@@ -3,18 +3,53 @@ body {
 }
 
 .header{
-    height: 40px;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 14px;
-    background: #7ede82;
-    border-radius: 7px;
-    box-shadow: #80d083 0px 0px 6px;
+    height: 68px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 6px;
     position: fixed;
-    z-index: 2;
+    z-index: 2000;
+    padding: 0 62px;
+}
+
+.brand-logo>img{
+	height: 32px;
+    margin-top: 18px;
+}
+
+#nav-mobile{
+	margin-left: 144px !important;
+	height: 68px;
+
+}
+#nav-mobile a{
+	color: #000;
+}
+
+#nav-mobile li{
+	height: 68px;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#nav-mobile li i{
+	font-size: 26px;
+	display: inline;
 }
 
 
+
+
+
+
+#profile-btn>i{
+	border-radius: 50%;
+    color: #1a1a1a;
+    padding: 1px;
+    border: solid 2px #1a1a1a !important;
+    margin-top: 3px;
+    font-size: 16px !important;
+}
 .gap5{
 	height: 5px;
 }
@@ -95,7 +130,7 @@ body {
 	border-bottom: solid 1px #d2d2d2;
 }
 .card-list-items:hover{
-	border-left: solid 4px #7ede82;
+	border-left: solid 4px #c32aff;
 }
 
 .card-list-items>div>div{
@@ -105,7 +140,7 @@ body {
 	padding-top: 23px !important; 
 }
 
-.card-list-btns>a{
+/*.card-list-btns>a{
     width: 106px;
     padding: 0px 7px;
     text-align: left;
@@ -115,11 +150,11 @@ body {
     margin-left: -21px;
     background: #e6e6e6;
     color: #000;
-}
-.card-list-btns>a:hover{
+}*/
+/*.card-list-btns>a:hover{
 	background: #fff;
 }
-
+*/
 
 
 
@@ -164,4 +199,17 @@ body {
 
 .modal-footer>a{
 	margin-left: 10px !important;
+}
+
+.custom-btn{
+
+	background: #e6e6e6;
+	box-shadow: none;
+	text-transform: none;
+	transition: ease-out 0.3s;
+	color: #000;
+}
+.custom-btn:hover{
+	background: #c32aff;
+	color: #fff !important;
 }

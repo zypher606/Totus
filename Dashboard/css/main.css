@@ -98,6 +98,9 @@ body {
 	border-left: solid 4px #7ede82;
 }
 
+.card-list-items>div>div{
+	padding-right: 0px !important;
+}
 .card-list-btns{
 	padding-top: 23px !important; 
 }
@@ -159,12 +162,6 @@ body {
 }
 
 
-
-#main-content {
-width: 920px;
-margin: -4px auto 0 auto;
-padding: 28px 0 32px;
-overflow: hidden;
-position:relative;
-z-index: -1;
-    }
+.modal-footer>a{
+	margin-left: 10px !important;
+}

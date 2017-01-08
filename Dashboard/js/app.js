@@ -104,6 +104,37 @@ app1.controller('dashboardController', function($scope, $http, $sce, $timeout, t
 
 
 
+	$scope.ratingSpecification = function(ratingNum){
+		var ratingNum = parseInt(ratingNum);
+		var myVal;
+		if (ratingNum == 70){
+			console.log('xxx');
+		}
+		switch (true) {
+			case (ratingNum<25):
+				myVal =  "Scholar";
+				break;
+
+			case (ratingNum < 50):
+				myVal = "Master";
+				break;
+
+			case (ratingNum <75):
+				myVal = "Grandmaster";
+				break;
+
+			case (ratingNum <100):
+				myVal = "Expert";
+				break;
+
+			case (100 < ratingNum):
+				myVal = "Badass";
+				break;
+		}
+
+		return myVal;
+	}
+
 
 
 
